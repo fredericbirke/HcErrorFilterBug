@@ -15,7 +15,7 @@ namespace HcErrorFilterBug
 
         public IError OnError(IError error)
         {
-            Console.WriteLine("An Error occured!");
+            _myErrorFilter.LogCritical("An Error occured!");
             return error;
         }
     }

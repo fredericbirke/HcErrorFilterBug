@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -18,7 +13,7 @@ namespace HcErrorFilterBug
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGraphQLServer()
-                .AddErrorFilter(factory => new MyErrorFilter(factory.GetService<ILogger<MyErrorFilter>>()))
+                .AddErrorFilter(factory => new MyErrorFilter(factory.GetApplicationService<ILogger<MyErrorFilter>>()))
                 .AddQueryType<Query>();
         }
 
